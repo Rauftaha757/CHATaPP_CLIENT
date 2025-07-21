@@ -50,12 +50,12 @@ class _LoginPage extends State<LoginPage> {
                          child: customText(text: "Forget Password?", color: Colors.black, fontsize: 14, fontWeight: FontWeight.w500,textAlign: TextAlign.right,)),
                    ),
                     Padding(
-                      padding:  EdgeInsets.all(20.0),
+                      padding:  EdgeInsets.only(top:25.r),
                       child: AnimatedContainer(
                         width: ispressed ? 70.w : 250.w,
                         height: 55.h,
                         duration: Duration(milliseconds: 200),
-                        child: CustomButton(text:ispressed? "" : "Login", buttoncolor: Color(0xFF000000), textcolor: Colors.white, fontWeight: FontWeight.bold,  borderRadius: BorderRadius.circular(ispressed ? 110.r : 30.r), onpressed: (){
+                        child: CustomButton(text:ispressed? "" : "Login", buttoncolor: Color(0xFF000000), textcolor: Colors.white, fontWeight: FontWeight.bold,  borderRadius: BorderRadius.circular(ispressed ? 110.r : 15.r), onpressed: (){
                          setState(() {
                            ispressed=!ispressed;
                          });
