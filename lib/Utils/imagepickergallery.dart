@@ -12,3 +12,4 @@ Future<File?> pickImageFromGallery() async {
     return null;
   }
 }
+
