@@ -1,5 +1,6 @@
 import 'package:chatapp/Utils/CutomButton.dart';
 import 'package:chatapp/Utils/custom_textfilelds.dart';
+import 'package:chatapp/controllers/Handle_Login_API.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,6 +15,13 @@ class LoginPage extends StatefulWidget{
 
 }
 class _LoginPage extends State<LoginPage> {
+  final ValueNotifier<bool> isLoading = ValueNotifier(false);
+  late LoginController loginController;
+  @override
+  void initState() {
+    super.initState();
+    loginController=LoginController(context);
+  }
   TextEditingController emailcontroller =TextEditingController();
   TextEditingController passwordcontroller =TextEditingController();
   bool ispressed=false;
@@ -50,18 +58,36 @@ class _LoginPage extends State<LoginPage> {
                          child: customText(text: "Forget Password?", color: Colors.black, fontsize: 14, fontWeight: FontWeight.w500,textAlign: TextAlign.right,)),
                    ),
                     Padding(
-                      padding:  EdgeInsets.only(top:25.r),
+                      padding: EdgeInsets.only(top: 25.r),
                       child: AnimatedContainer(
-                        width: ispressed ? 70.w : 250.w,
+                        width:  250.w,
                         height: 55.h,
                         duration: Duration(milliseconds: 200),
-                        child: CustomButton(text:ispressed? "" : "Login", buttoncolor: Color(0xFF000000), textcolor: Colors.white, fontWeight: FontWeight.bold,  borderRadius: BorderRadius.circular(ispressed ? 110.r : 15.r), onpressed: (){
-                         setState(() {
-                           ispressed=!ispressed;
-                         });
-                        }, fontsize: 21, elevation: 6,shadowcolor: Colors.grey,),
+                        child: CustomButton(
+                          text: "Login",
+                          buttoncolor: Color(0xFF000000),
+                          textcolor: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          borderRadius: BorderRadius.circular( 15.r),
+                          onpressed: () {
+                            if (ispressed) return;
+                            loginController.handlelogin(
+                              emailcontroller.text,
+                              passwordcontroller.text,
+                              onComplete: () {
+                                setState(() {
+                                  ispressed = false;
+                                });
+                              },
+                            );
+                          },
+                          fontsize: 21,
+                          elevation: 6,
+                          shadowcolor: Colors.grey,
+                        ),
                       ),
                     )
+
                   ],
                 ),
               )
