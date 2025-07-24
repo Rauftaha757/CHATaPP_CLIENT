@@ -37,7 +37,7 @@ class CustomTextFields extends StatelessWidget {
         obscuringCharacter: "*",
         keyboardType: keyboardtype,
 
-        style: const TextStyle(color: Colors.white),
+        style: const TextStyle(color: Colors.black),
         decoration: InputDecoration(
           prefixIcon: prefixicon,
           suffixIcon: suffix,
